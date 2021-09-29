@@ -7,8 +7,25 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+# Attach the tidyverse, readxl, writexl and here packages:
+library(tidyverse)
+library(readxl)
+library(writexl)
+library(here)
 ```
 
-# Learning `readxl`
 
-We are working with data and it's going to be amazing.
+```{r}
+fish_counts <- read_csv(here("data", "fish_counts_curated.csv"))
+```
+
+```{r}
+substrate_cover <- read_excel(here("data", "substrate_cover_curated.xlsx, skip = 4, na = "-9999")
+```
+
+
+
+
+
+
+
