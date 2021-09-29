@@ -1,0 +1,14 @@
+---
+title: "Reading data into R with `readxl`"
+author: "Abdul Rahman Shahab"
+date: "9/29/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Learning `readxl`
+
+We are working with data and it's going to be amazing.
