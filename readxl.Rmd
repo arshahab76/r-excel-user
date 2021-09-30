@@ -12,29 +12,90 @@ library(tidyverse)
 library(readxl)
 library(writexl)
 library(here)
+library(pander)
 ```
 
 
-```{r}
+Using `read_csv` to load data from a csv file
+
+```{r, message=FALSE}
 fish_counts <- read_csv(here("data", "fish_counts_curated.csv"))
+fish_counts
+```
+
+
+```{r}
+rm(substrate_cover)
+rm(substrate_cover_curated)
+```
+
+
+Using readxl to upload data from an xlsx file
+```{r}
+library(readxl)
+substrate_cover <- read_excel(
+  here("data", "substrate_cover_curated.xlsx"),
+  na = "-9999",
+  skip = 4
+)
+substrate_cover
 ```
 
 ```{r}
 library(readxl)
-substrate_cover <- read_excel("data/substrate_cover_curated.xlsx", 
-    na = "-9999", skip = 4)
-View(substrate_cover)
+carp_cover_2000 <- read_excel(
+  here("data", "substrate_cover_curated.xlsx"),
+  range = "D12:I15")
+carp_cover_2000
 ```
+
 
 ```{r}
 library(readxl)
-lobster_data <- read_excel(here("data", "lobsters.xlsx"))
-lobster_data
+carp_cover_2000 <- read_excel(
+  here("data", "substrate_cover_curated.xlsx"),
+  range = "D12:I15", col_names = c("site_name", "transect", "quad", "plot_side", "type", "coverage"))
+carp_cover_2000
 ```
 
 
+```{r}
+library(readxl)
+carp_cover_new <- read_excel(
+  here("data", "substrate_cover_curated.xlsx"),
+  range = "A10:F13",
+  col_names = c("year",	"month",	"date",	"site",	"transect",	"quad")
+)
+carp_cover_new
+```
 
 
+```{r}
+kelp_counts <- read_excel(
+  here("data", "kelp_counts_curated.xlsx")
+)
+kelp_counts
+```
 
+
+```{r}
+excel_sheets(
+  here("data", "kelp_counts_curated.xlsx")
+)
+```
+
+
+```{r}
+kelp_ivee <- read_excel(
+  here("data", "kelp_counts_curated.xlsx"),
+  sheet = 7
+)
+kelp_ivee
+```
+
+
+```{r}
+
+```
 
 
