@@ -24,11 +24,6 @@ fish_counts
 ```
 
 
-```{r}
-rm(substrate_cover)
-rm(substrate_cover_curated)
-```
-
 
 Using readxl to upload data from an xlsx file
 ```{r}
@@ -59,15 +54,6 @@ carp_cover_2000
 ```
 
 
-```{r}
-library(readxl)
-carp_cover_new <- read_excel(
-  here("data", "substrate_cover_curated.xlsx"),
-  range = "A10:F13",
-  col_names = c("year",	"month",	"date",	"site",	"transect",	"quad")
-)
-carp_cover_new
-```
 
 
 ```{r}
@@ -87,13 +73,11 @@ excel_sheets(
 
 
 ```{r}
-kelp_path2 <- here("data", "salary.xlsx")
+kelp_path <- here("data", "kelp_counts_curated.xlsx")
 
-kelp_all_sites <- kelp_path2 %>% 
+kelp_all_sites <- kelp_path %>% 
   excel_sheets() %>% 
   set_names() %>% 
-  purrr::map_df(read_excel, kelp_path2)
+  purrr::map_df(read_excel, kelp_path)
 kelp_all_sites
 ```
-
-
