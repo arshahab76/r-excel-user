@@ -20,8 +20,16 @@ fish_counts <- read_csv(here("data", "fish_counts_curated.csv"))
 ```
 
 ```{r}
-substrate_cover <- read_excel(here("data", "substrate_cover_curated.xlsx, skip = 4, na = "-9999")
+library(readxl)
+substrate_cover <- read_excel("data/substrate_cover_curated.xlsx", 
+    skip = 4)
+View(substrate_cover)
+summary(substrate_cover)
+substrate_cover
+names(substrate_cover)
+ls(substrate_cover)
 ```
+
 
 
 
