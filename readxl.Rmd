@@ -72,7 +72,8 @@ carp_cover_new
 
 ```{r}
 kelp_counts <- read_excel(
-  here("data", "kelp_counts_curated.xlsx")
+  here("data", "kelp_counts_curated.xlsx"),
+  sheet = "abur"
 )
 kelp_counts
 ```
@@ -86,16 +87,13 @@ excel_sheets(
 
 
 ```{r}
-kelp_ivee <- read_excel(
-  here("data", "kelp_counts_curated.xlsx"),
-  sheet = 7
-)
-kelp_ivee
-```
+kelp_path2 <- here("data", "salary.xlsx")
 
-
-```{r}
-
+kelp_all_sites <- kelp_path2 %>% 
+  excel_sheets() %>% 
+  set_names() %>% 
+  purrr::map_df(read_excel, kelp_path2)
+kelp_all_sites
 ```
 
 
