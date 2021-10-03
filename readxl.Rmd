@@ -12,6 +12,7 @@ library(tidyverse)
 library(readxl)
 library(writexl)
 library(here)
+library(purrr)
 library(pander)
 ```
 
@@ -72,12 +73,53 @@ excel_sheets(
 ```
 
 
+The code below is from the training website which returns the following errors
+
+```{r}
+#kelp_path <- here("data", "kelp_counts_curated.xlsx")
+#kelp_all_sites <- kelp_path %>% 
+#   excel_sheets() %>% 
+#   set_names() %>% 
+#   purrr::map_df(read_excel, kelp_path)
+```
+
+
+```{r}
+#Error: `path` does not exist: 'abur'
+#Execution halted
+```
+
+
+
+
+Instead, I made the changes to the `read_excel` function adding the `~` and the
+revised file path.
+
 ```{r}
 kelp_path <- here("data", "kelp_counts_curated.xlsx")
 
 kelp_all_sites <- kelp_path %>% 
   excel_sheets() %>% 
   set_names() %>% 
-  purrr::map_df(read_excel, kelp_path)
+  purrr::map_df(~read_excel("data/kelp_counts_curated.xlsx"))
 kelp_all_sites
+
+
 ```
+
+
+This is another approach to the same purpose
+
+```{r}
+
+kelp_all_new <- excel_sheets(
+  here("data", "kelp_counts_curated.xlsx")
+) %>% 
+  map_df(~read_excel("data/kelp_counts_curated.xlsx"))
+
+kelp_all_new
+
+
+```
+
+
